@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <style>
+        p {
+          opacity: 0;
+          transform: translateY(80px);
+          transition: opacity .6s ease-out, transform .6s ease-out;
+          max-height: 0;
+          overflow: hidden;
+          visibility: hidden;
+          color: rgb(187, 187, 187);
+          padding-left: 1.4em;
+        }
+    
+        details[open] p {
+          max-height: 500px; /* A large enough value to allow animation */
+          visibility: visible;
+        }
+      </style>
+    
     <h1>DD Minsk FAQ</h1>
 
     <details>
@@ -58,21 +76,54 @@
     </details>
   </body>
 
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
-      const detailsElements = document.querySelectorAll("details");
+    const detailsElements = document.querySelectorAll("details");
 
-      detailsElements.forEach((detail) => {
+    detailsElements.forEach((detail) => {
         detail.addEventListener("toggle", function () {
-          if (this.open) {
-            detailsElements.forEach((otherDetail) => {
-              if (otherDetail !== this) {
-                otherDetail.removeAttribute("open");
-              }
-            });
-          }
+            if (this.open) {
+                detailsElements.forEach((otherDetail) => {
+                    if (otherDetail !== this) {
+                        otherDetail.removeAttribute("open");
+                    }
+                });
+            }
         });
+    });
+});
+
+</script>
+
+<script>
+    document.querySelectorAll("details").forEach((detail) => {
+      const p = detail.querySelector("p");
+      let animationTimeout;
+
+      detail.addEventListener("toggle", function () {
+        clearTimeout(animationTimeout); // Clear any previous animation to prevent skipping
+
+        if (detail.open) {
+          p.style.opacity = "0"; // Reset opacity to avoid flicker
+          p.style.transform = "translateY(10px)";
+          p.style.visibility = "visible";
+
+          // Delay to allow <details> to expand before animating
+          animationTimeout = setTimeout(() => {
+            p.style.opacity = "1";
+            p.style.transform = "translateY(0)";
+          }, 10);
+        } else {
+          p.style.opacity = "0";
+          p.style.transform = "translateY(10px)";
+
+          // Wait for animation to finish before hiding content
+          animationTimeout = setTimeout(() => {
+            p.style.visibility = "hidden";
+          }, 400);
+        }
       });
     });
   </script>
+
 </html>
