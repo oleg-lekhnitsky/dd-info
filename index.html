@@ -83,6 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
   detailsElements.forEach((detail) => {
     const p = detail.querySelector("p");
 
+    // Ensure initial state
+    p.style.opacity = "0";
+    p.style.transform = "translateY(10px)";
+    p.style.maxHeight = "0px";
+    p.style.overflow = "hidden";
+    p.style.transition = "opacity 0.4s ease-out, transform 0.4s ease-out, max-height 0.4s ease-out";
+
     detail.addEventListener("toggle", function () {
       // Auto-close other <details> elements
       if (this.open) {
@@ -92,22 +99,15 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        // Animation handling
-        p.style.opacity = "0"; // Reset opacity immediately
-        p.style.transform = "translateY(10px)";
-        p.style.visibility = "visible"; // Make it visible before transition starts
-
-        setTimeout(() => {
-          p.style.opacity = "1";
-          p.style.transform = "translateY(0)";
-        }, 10);
+        // Open animation
+        p.style.maxHeight = "500px"; // Large enough value for smooth animation
+        p.style.opacity = "1";
+        p.style.transform = "translateY(0)";
       } else {
+        // Close animation
         p.style.opacity = "0";
         p.style.transform = "translateY(10px)";
-
-        setTimeout(() => {
-          if (!detail.open) p.style.visibility = "hidden";
-        }, 400);
+        p.style.maxHeight = "0px";
       }
     });
   });

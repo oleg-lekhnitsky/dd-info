@@ -4,8 +4,8 @@ details {
     font-weight: 400;
     border-top: 1px solid rgb(187, 187, 187);
     padding: 12px 0;
-    min-width: 50%;
-    overflow: hidden; /* Safari Fix */
+    min-width: 30%;
+
 }
 
 /* Safari fix: Use a direct child div instead of `::details-content` */
