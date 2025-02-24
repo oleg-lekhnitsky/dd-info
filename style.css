@@ -11,7 +11,6 @@ details {
 
   &::details-content {
     opacity: 0;
-    color: rgb(187, 187, 187);
     block-size: 0;
     overflow-y: clip;
     padding-bottom: 0px;
@@ -23,7 +22,6 @@ details {
   }
 
   &[open]::details-content {
-    color: rgb(187, 187, 187);
     opacity: 1;
     block-size: auto;
     padding-bottom: 20px;
@@ -33,11 +31,25 @@ details {
 }
 
 details > summary {
-  list-style-type: "👉 ";
+  list-style-type: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary {
+  list-style-type: none;
+}
+details > summary::before {
+  content: "👉 ";
+}
+details[open] > summary {
+  content: "☝️ ";
 }
 
 details[open] > summary {
-  list-style-type: "☝️ ";
+  color: rgb(187, 187, 187);
 }
 
 @layer support {
