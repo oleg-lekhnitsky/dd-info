@@ -1,0 +1,100 @@
+details {
+  text-transform: lowercase;
+  inline-size: 50ch;
+  font-weight: 400;
+  border-top: 1px solid rgb(187, 187, 187);
+  padding: 12px 0;
+  min-width: 50%;
+  @media (prefers-reduced-motion: no-preference) {
+    interpolate-size: allow-keywords;
+  }
+
+  &::details-content {
+    opacity: 0;
+    color: rgb(187, 187, 187);
+    block-size: 0;
+    overflow-y: clip;
+    padding-bottom: 0px;
+    padding-left: 40px;
+    padding-top: 4px;
+    content: "👉";
+    transition: content-visibility 0.5s allow-discrete ease-in,
+      opacity 1s ease-out, block-size 0.5s ease;
+  }
+
+  &[open]::details-content {
+    color: rgb(187, 187, 187);
+    opacity: 1;
+    block-size: auto;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+}
+
+details > summary {
+  list-style-type: "👉 ";
+}
+
+details[open] > summary {
+  list-style-type: "☝️ ";
+}
+
+@layer support {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    block-size: 100%;
+    color-scheme: dark light;
+    font-size: 32px;
+    max-width: 100%;
+  }
+
+  body {
+    min-block-size: 100%;
+    width: 100%;
+    font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif;
+
+    display: grid;
+    place-content: center;
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background-color: #ff5101;
+    color: black;
+  }
+
+  @media screen and (max-width: 767px) {
+    body {
+      width: 100%;
+      display: block;
+      padding: 12px;
+    }
+
+    details {
+      width: 100%;
+      max-width: 100%;
+      font-size: 24px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+  }
+}

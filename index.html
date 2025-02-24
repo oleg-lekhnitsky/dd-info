@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>DD Minsk FAQ</h1>
+
+    <details>
+      <summary>Что такое дд?</summary>
+      <p>
+        (Design Department)<br />Это комьюнити минских дизайнеров, которые
+        периодически собираются по разным поводам и проводят вместе время. Наши
+        основные форматы: воркшопы, выступления, презентации, дискуссии. Мы не
+        занимаемся обучением, вместо этого мы делаем что-то вместе, обмениваемся
+        мыслями, эмоциями и опытом.<br />создано дизайнерами для дизайнеров.
+      </p>
+    </details>
+    <details>
+      <summary>Как попасть?</summary>
+      <p>
+        Мы&nbsp;оставляем ссылку на&nbsp;регистрацию под каждым анонсом
+        в&nbsp;тг-канале. Нужно заполнить форму и присоединиться. Мест обычно
+        немного, поэтому рекомендуем долго не откладывать.
+      </p>
+    </details>
+    <details>
+      <summary>Сколько стоит вход?</summary>
+      <p>
+        Фиксированной стоимости нет. Мы отталкиваемся от&nbsp;расходов
+        на&nbsp;конкретное мероприятие и&nbsp;сообщаем условия в&nbsp;анонсе.
+      </p>
+    </details>
+    <details>
+      <summary>Как добраться?</summary>
+      <p>
+        Мы&nbsp;встречаемся в&nbsp;разных местах в&nbsp;зависимости от&nbsp;темы
+        и&nbsp;формата мероприятия. Все детали отправляем на&nbsp;почту вместе
+        с&nbsp;регистрацией.
+      </p>
+    </details>
+    <details>
+      <summary>Есть ли расписание?</summary>
+      <p>
+        Долгосрочного расписания нет. Мы анонсируем движухи по мере их создания.
+      </p>
+    </details>
+    <details>
+      <summary>Есть ли онлайн?</summary>
+      <p>
+        Бывает, но не каждый раз. Мы всегда помечаем в анонсе, если собираемся
+        делать онлайн-трансляцию. Записи как правило не выкладываем. Но есть
+        одна запись, которую можно посмотреть на канале Прагматики
+      </p>
+    </details>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const detailsElements = document.querySelectorAll("details");
+
+      detailsElements.forEach((detail) => {
+        detail.addEventListener("toggle", function () {
+          if (this.open) {
+            detailsElements.forEach((otherDetail) => {
+              if (otherDetail !== this) {
+                otherDetail.removeAttribute("open");
+              }
+            });
+          }
+        });
+      });
+    });
+  </script>
+</html>
